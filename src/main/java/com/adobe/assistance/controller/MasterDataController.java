@@ -1,5 +1,8 @@
 package com.adobe.assistance.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +25,15 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveConnectorData", method = RequestMethod.POST)
-	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
+	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie, HttpServletRequest request){
+		Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for(Cookie cookie : cookies){
+            	System.out.println(cookie.getName());
+            }
+        }
+		
+		
 		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
