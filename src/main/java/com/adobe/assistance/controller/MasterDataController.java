@@ -1,6 +1,7 @@
 package com.adobe.assistance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +22,15 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveConnectorData", method = RequestMethod.POST)
-	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData){
+	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
-		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
 		System.out.println(masterDataCollection);
 		masterDataCollection.setSfdcConnector(sfdcConnectorData);
-		masterDataCollection.setUserId("Varun");
+		masterDataCollection.setUserId(userIdCookie);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -37,14 +38,14 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveLUISData", method = RequestMethod.POST)
-	public String saveLuisUrlData(@RequestBody String luisUrl){
+	public String saveLuisUrlData(@RequestBody String luisUrl, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
-		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
 		masterDataCollection.setLuisUrl(luisUrl);
-		masterDataCollection.setUserId("Varun");
+		masterDataCollection.setUserId(userIdCookie);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -52,14 +53,14 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveUserData", method = RequestMethod.POST)
-	public String saveUserData(@RequestBody UserData userData){
+	public String saveUserData(@RequestBody UserData userData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
-		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
 		masterDataCollection.setUserDetails(userData);
-		masterDataCollection.setUserId("Varun");
+		masterDataCollection.setUserId(userIdCookie);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -67,15 +68,15 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveResponseData", method = RequestMethod.POST)
-	public String saveResponseTypes(@RequestBody Boolean isChatEnabled, @RequestBody Boolean isVoiceEnabled){
+	public String saveResponseTypes(@RequestBody Boolean isChatEnabled, @RequestBody Boolean isVoiceEnabled, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
-		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
 		masterDataCollection.setChatEnabled(Boolean.valueOf(isChatEnabled));
 		masterDataCollection.setVoiceEnabled(Boolean.valueOf(isVoiceEnabled));
-		masterDataCollection.setUserId("Varun");
+		masterDataCollection.setUserId(userIdCookie);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -83,14 +84,14 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveMongoData", method = RequestMethod.POST)
-	public String saveMongoData(@RequestBody MongoDbData mongoDbData){
+	public String saveMongoData(@RequestBody MongoDbData mongoDbData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
-		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
 		masterDataCollection.setMongoDbDetails(mongoDbData);
-		masterDataCollection.setUserId("Varun");
+		masterDataCollection.setUserId(userIdCookie);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
