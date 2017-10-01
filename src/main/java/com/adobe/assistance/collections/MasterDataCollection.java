@@ -16,9 +16,10 @@ public class MasterDataCollection {
 		super();
 	}
 	
-	public MasterDataCollection(String userId, UserData userDetails, MongoDbData mongoDbDetails, String luisUrl,
-			SFDCConnectorData sfdcConnector, Boolean chatEnabled, Boolean voiceEnabled) {
+	public MasterDataCollection(String id, String userId, UserData userDetails, MongoDbData mongoDbDetails,
+			String luisUrl, SFDCConnectorData sfdcConnector, Boolean chatEnabled, Boolean voiceEnabled) {
 		super();
+		Id = id;
 		this.userId = userId;
 		this.userDetails = userDetails;
 		this.mongoDbDetails = mongoDbDetails;
@@ -27,7 +28,10 @@ public class MasterDataCollection {
 		this.chatEnabled = chatEnabled;
 		this.voiceEnabled = voiceEnabled;
 	}
+
 	@Id
+	private String Id;
+	@Field("USERID")
 	private String userId;
 	@Field("USERDATA")
 	private UserData userDetails;
@@ -42,6 +46,12 @@ public class MasterDataCollection {
 	@Field("VOICEENABLED")
 	private Boolean voiceEnabled;
 	
+	public String getId() {
+		return Id;
+	}
+	public void setId(String id) {
+		Id = id;
+	}
 	public UserData getUserDetails() {
 		return userDetails;
 	}

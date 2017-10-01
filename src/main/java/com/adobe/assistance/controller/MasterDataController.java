@@ -27,6 +27,7 @@ public class MasterDataController {
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
+		System.out.println(masterDataCollection);
 		masterDataCollection.setSfdcConnector(sfdcConnectorData);
 		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
