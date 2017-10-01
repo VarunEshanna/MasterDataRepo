@@ -71,14 +71,14 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveResponseData", method = RequestMethod.POST)
-	public String saveResponseTypes(@RequestBody String isChatEnabled, @RequestBody String isVoiceEnabled, @CookieValue(value = "userId", defaultValue = "nocookie") String userIdCookie){
+	public String saveResponseTypes(@RequestBody String chatEnabled, @RequestBody String voiceEnabled, @CookieValue(value = "userId", defaultValue = "nocookie") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
-		masterDataCollection.setChatEnabled(Boolean.valueOf(isChatEnabled));
-		masterDataCollection.setVoiceEnabled(Boolean.valueOf(isVoiceEnabled));
+		masterDataCollection.setChatEnabled(Boolean.valueOf(chatEnabled));
+		masterDataCollection.setVoiceEnabled(Boolean.valueOf(voiceEnabled));
 		masterDataCollection.setUserId(userIdCookie);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
