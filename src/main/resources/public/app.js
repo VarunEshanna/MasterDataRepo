@@ -100,7 +100,7 @@ function main($scope, $http){
 		        "port": $scope.port,
 		        "database": $scope.database
 		}
-		$http.post("saveConnectorData", $scope.data).
+		$http.post("https://blooming-peak-10193.herokuapp.com/saveConnectorData", $scope.data).
 		success(function(data, status, headers, config){
 			console.log('success: ' +data);
 		})
