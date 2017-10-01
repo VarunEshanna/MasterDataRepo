@@ -21,7 +21,44 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveConnectorData", method = RequestMethod.POST)
-	public String saveData(@RequestBody MasterDataCollection masterDataCollection){
+	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData){
+		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection.setSfdcConnector(sfdcConnectorData);
+		masterDataCollection.setUserId("Varun");
+		System.out.println(masterDataCollection);
+		masterDataRepository.save(masterDataCollection);
+		return "Success";
+	}
+	
+	@CrossOrigin	
+	@RequestMapping(value = "/saveLUISData", method = RequestMethod.POST)
+	public String saveLuisUrlData(@RequestBody String luisUrl){
+		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection.setLuisUrl(luisUrl);
+		masterDataCollection.setUserId("Varun");
+		System.out.println(masterDataCollection);
+		masterDataRepository.save(masterDataCollection);
+		return "Success";
+	}
+	
+	@CrossOrigin	
+	@RequestMapping(value = "/saveUserData", method = RequestMethod.POST)
+	public String saveUserData(@RequestBody UserData userData){
+		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection.setUserDetails(userData);
+		masterDataCollection.setUserId("Varun");
+		System.out.println(masterDataCollection);
+		masterDataRepository.save(masterDataCollection);
+		return "Success";
+	}
+	
+	@CrossOrigin	
+	@RequestMapping(value = "/saveResponseData", method = RequestMethod.POST)
+	public String saveResponseTypes(@RequestBody Boolean isChatEnabled, @RequestBody Boolean isVoiceEnabled){
+		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection.setChatEnabled(isChatEnabled);
+		masterDataCollection.setVoiceEnabled(isVoiceEnabled);
+		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
