@@ -100,14 +100,21 @@ function main($scope, $http){
 		        "port": $scope.port,
 		        "database": $scope.database
 		}
-		$http.post("https://blooming-peak-10193.herokuapp.com/saveConnectorData", $scope.data).
-		success(function(data, status, headers, config){
-			console.log('success: ' +data);
-		})
-		.error(function(data, status, headers, config){
-			console.log('error: ' +data);
-		});
 
+		var req = {
+				method: 'POST',
+				url: 'https://blooming-peak-10193.herokuapp.com/saveConnectorData',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				data: $scope.data
+		}
+
+		$http(req).then(function successCallback(response){
+			console.log('success: ' +response);
+		}, function errorCallback(response){
+			console.log('error: ' +response);
+		});
 
 		// TODO: Make REST call to save connection
 
