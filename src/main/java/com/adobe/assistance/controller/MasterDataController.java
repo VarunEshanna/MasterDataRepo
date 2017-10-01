@@ -28,6 +28,7 @@ public class MasterDataController {
 			masterDataCollection = new MasterDataCollection();
 		}
 		masterDataCollection.setSfdcConnector(sfdcConnectorData);
+		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -42,6 +43,7 @@ public class MasterDataController {
 			masterDataCollection = new MasterDataCollection();
 		}
 		masterDataCollection.setLuisUrl(luisUrl);
+		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -56,6 +58,7 @@ public class MasterDataController {
 			masterDataCollection = new MasterDataCollection();
 		}
 		masterDataCollection.setUserDetails(userData);
+		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -69,8 +72,24 @@ public class MasterDataController {
 		if(masterDataCollection == null){
 			masterDataCollection = new MasterDataCollection();
 		}
-		masterDataCollection.setChatEnabled(isChatEnabled);
-		masterDataCollection.setVoiceEnabled(isVoiceEnabled);
+		masterDataCollection.setChatEnabled(Boolean.valueOf(isChatEnabled));
+		masterDataCollection.setVoiceEnabled(Boolean.valueOf(isVoiceEnabled));
+		masterDataCollection.setUserId("Varun");
+		System.out.println(masterDataCollection);
+		masterDataRepository.save(masterDataCollection);
+		return "Success";
+	}
+	
+	@CrossOrigin	
+	@RequestMapping(value = "/saveMongoData", method = RequestMethod.POST)
+	public String saveMongoData(@RequestBody MongoDbData mongoDbData){
+		MasterDataCollection masterDataCollection = null;
+		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		if(masterDataCollection == null){
+			masterDataCollection = new MasterDataCollection();
+		}
+		masterDataCollection.setMongoDbDetails(mongoDbData);
+		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
