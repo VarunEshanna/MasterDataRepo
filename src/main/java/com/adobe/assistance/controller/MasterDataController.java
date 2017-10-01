@@ -22,8 +22,11 @@ public class MasterDataController {
 	@CrossOrigin	
 	@RequestMapping(value = "/saveConnectorData", method = RequestMethod.POST)
 	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData){
-		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		if(masterDataCollection == null){
+			masterDataCollection = new MasterDataCollection();
+		}
 		masterDataCollection.setSfdcConnector(sfdcConnectorData);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
@@ -33,8 +36,11 @@ public class MasterDataController {
 	@CrossOrigin	
 	@RequestMapping(value = "/saveLUISData", method = RequestMethod.POST)
 	public String saveLuisUrlData(@RequestBody String luisUrl){
-		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		if(masterDataCollection == null){
+			masterDataCollection = new MasterDataCollection();
+		}
 		masterDataCollection.setLuisUrl(luisUrl);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
@@ -44,8 +50,11 @@ public class MasterDataController {
 	@CrossOrigin	
 	@RequestMapping(value = "/saveUserData", method = RequestMethod.POST)
 	public String saveUserData(@RequestBody UserData userData){
-		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		if(masterDataCollection == null){
+			masterDataCollection = new MasterDataCollection();
+		}
 		masterDataCollection.setUserDetails(userData);
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
@@ -55,8 +64,11 @@ public class MasterDataController {
 	@CrossOrigin	
 	@RequestMapping(value = "/saveResponseData", method = RequestMethod.POST)
 	public String saveResponseTypes(@RequestBody Boolean isChatEnabled, @RequestBody Boolean isVoiceEnabled){
-		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId("Varun");
+		if(masterDataCollection == null){
+			masterDataCollection = new MasterDataCollection();
+		}
 		masterDataCollection.setChatEnabled(isChatEnabled);
 		masterDataCollection.setVoiceEnabled(isVoiceEnabled);
 		System.out.println(masterDataCollection);
