@@ -1,44 +1,44 @@
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-    document.cookie = "userId=Varun";
+	$('[data-toggle="tooltip"]').tooltip();
+	document.cookie = "userId=Varun";
 });
 
 
 function getval(sel)
 {
-    if(sel.value == 'SOQL'){
-    	console.log('add text area');
-    }else if(sel.value == 'Expression'){
-    	console.log('add expression statements');
-    }
+	if(sel.value == 'SOQL'){
+		console.log('add text area');
+	}else if(sel.value == 'Expression'){
+		console.log('add expression statements');
+	}
 }
 
 
 var text = "";
 function getSelectionText() {
-    var activeEl = document.activeElement;
-    var activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
-    if (
-      (activeElTagName == "textarea") || (activeElTagName == "input" &&
-      /^(?:text|search|password|tel|url)$/i.test(activeEl.type)) &&
-      (typeof activeEl.selectionStart == "number")
-    ) {
-        text = activeEl.value.slice(activeEl.selectionStart, activeEl.selectionEnd);
-    } else if (window.getSelection) {
-        text = window.getSelection().toString();
-    }
-    return text;
+	var activeEl = document.activeElement;
+	var activeElTagName = activeEl ? activeEl.tagName.toLowerCase() : null;
+	if (
+			(activeElTagName == "textarea") || (activeElTagName == "input" &&
+					/^(?:text|search|password|tel|url)$/i.test(activeEl.type)) &&
+					(typeof activeEl.selectionStart == "number")
+	) {
+		text = activeEl.value.slice(activeEl.selectionStart, activeEl.selectionEnd);
+	} else if (window.getSelection) {
+		text = window.getSelection().toString();
+	}
+	return text;
 }
 
 document.onselectionchange = function() {
-  document.getElementById("sel").value = getSelectionText();
+	document.getElementById("sel").value = getSelectionText();
 };
 
 var module = angular.module("myApp",[]);
 module.controller("mainCtrl",main);
 
 
-function main($scope){
+function main($scope, $http){
 	$scope.displayModule = '';
 	$scope.initialiseDisplay = '';
 	$scope.seletedConnector = '';
@@ -85,27 +85,43 @@ function main($scope){
 			console.log("key: "+key+ ", value: "+$scope.entity[key]);
 		}
 	}
-	
+
 	$scope.saveDbData = function(){
 		console.log("username "+$scope.username);
 		console.log("pwd "+$scope.pwd);
 		console.log("host "+$scope.host);
 		console.log("port "+$scope.port);
 		console.log("database "+$scope.database);
-		
+
+		$scope.data = {
+				"username": $scope.username,
+		        "password": $scope.pwd,
+		        "host": $scope.host,
+		        "port": $scope.port,
+		        "database": $scope.database
+		}
+		$http.post("saveConnectorData", $scope.data).
+		success(function(data, status, headers, config){
+			console.log('success: ' +data);
+		})
+		.error(function(data, status, headers, config){
+			console.log('error: ' +data);
+		});
+
+
 		// TODO: Make REST call to save connection
-		
+
 	}
-	
-	
+
+
 	$scope.validateDbData = function(){
 		console.log("username "+$scope.username);
 		console.log("pwd "+$scope.pwd);
 		console.log("host "+$scope.host);
 		console.log("port "+$scope.port);
 		console.log("database "+$scope.database);
-		
+
 		// TODO: Make REST call to validate connection
 	}
-	
+
 }
