@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
-    $.cookie("userId", "Varun");
+    document.cookie = "userId=Varun";
 });
 
 
