@@ -25,15 +25,7 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveConnectorData", method = RequestMethod.POST)
-	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie, HttpServletRequest request){
-		Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for(Cookie cookie : cookies){
-            	System.out.println(cookie.getName());
-            }
-        }
-		
-		
+	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData, @CookieValue(value = "userId", defaultValue = "nocookie") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
@@ -49,7 +41,7 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveLUISData", method = RequestMethod.POST)
-	public String saveLuisUrlData(@RequestBody String luisUrl, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
+	public String saveLuisUrlData(@RequestBody String luisUrl, @CookieValue(value = "userId", defaultValue = "nocookie") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
@@ -64,7 +56,7 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveUserData", method = RequestMethod.POST)
-	public String saveUserData(@RequestBody UserData userData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
+	public String saveUserData(@RequestBody UserData userData, @CookieValue(value = "userId", defaultValue = "nocookie") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
@@ -79,7 +71,7 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveResponseData", method = RequestMethod.POST)
-	public String saveResponseTypes(@RequestBody Boolean isChatEnabled, @RequestBody Boolean isVoiceEnabled, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
+	public String saveResponseTypes(@RequestBody String isChatEnabled, @RequestBody String isVoiceEnabled, @CookieValue(value = "userId", defaultValue = "nocookie") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
@@ -95,7 +87,7 @@ public class MasterDataController {
 	
 	@CrossOrigin	
 	@RequestMapping(value = "/saveMongoData", method = RequestMethod.POST)
-	public String saveMongoData(@RequestBody MongoDbData mongoDbData, @CookieValue(value = "userId", defaultValue = "hello") String userIdCookie){
+	public String saveMongoData(@RequestBody MongoDbData mongoDbData, @CookieValue(value = "userId", defaultValue = "nocookie") String userIdCookie){
 		MasterDataCollection masterDataCollection = null;
 		masterDataCollection = masterDataRepository.findByUserId(userIdCookie);
 		if(masterDataCollection == null){
