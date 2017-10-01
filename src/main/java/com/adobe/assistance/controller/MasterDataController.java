@@ -23,8 +23,8 @@ public class MasterDataController {
 	@RequestMapping(value = "/saveConnectorData", method = RequestMethod.POST)
 	public String saveConnectorData(@RequestBody SFDCConnectorData sfdcConnectorData){
 		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection = masterDataRepository.findByUserId("Varun");
 		masterDataCollection.setSfdcConnector(sfdcConnectorData);
-		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -34,8 +34,8 @@ public class MasterDataController {
 	@RequestMapping(value = "/saveLUISData", method = RequestMethod.POST)
 	public String saveLuisUrlData(@RequestBody String luisUrl){
 		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection = masterDataRepository.findByUserId("Varun");
 		masterDataCollection.setLuisUrl(luisUrl);
-		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -45,8 +45,8 @@ public class MasterDataController {
 	@RequestMapping(value = "/saveUserData", method = RequestMethod.POST)
 	public String saveUserData(@RequestBody UserData userData){
 		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection = masterDataRepository.findByUserId("Varun");
 		masterDataCollection.setUserDetails(userData);
-		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
@@ -56,9 +56,9 @@ public class MasterDataController {
 	@RequestMapping(value = "/saveResponseData", method = RequestMethod.POST)
 	public String saveResponseTypes(@RequestBody Boolean isChatEnabled, @RequestBody Boolean isVoiceEnabled){
 		MasterDataCollection masterDataCollection = new MasterDataCollection();
+		masterDataCollection = masterDataRepository.findByUserId("Varun");
 		masterDataCollection.setChatEnabled(isChatEnabled);
 		masterDataCollection.setVoiceEnabled(isVoiceEnabled);
-		masterDataCollection.setUserId("Varun");
 		System.out.println(masterDataCollection);
 		masterDataRepository.save(masterDataCollection);
 		return "Success";
